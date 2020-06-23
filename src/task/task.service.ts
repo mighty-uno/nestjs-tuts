@@ -12,6 +12,11 @@ export class TaskService {
     private taskRepository: TaskRepository,
   ) {}
 
+  async getTasks(): Promise<Task[]> {
+    const tasks = await this.taskRepository.find();
+    return tasks;
+  }
+
   async getTaskById(id: number): Promise<Task> {
     const found = await this.taskRepository.findOne(id);
     if (!found) {
